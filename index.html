@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlossomCrafts | Handmade Floral & Yarn Treasures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #a67f78;
+            --secondary: #e8d5cc;
+            --accent: #c9a8a9;
+            --light: #f9f5f2;
+            --dark: #5c4a4a;
+            --success: #9cb59d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(92, 74, 74, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--light);
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('D:\best') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(166, 127, 120, 0.7) 0%, rgba(201, 168, 169, 0.7) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 250px;
+            width: 100%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 4rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .btn-buy {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-buy:hover {
+            background-color: var(--dark);
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            color: var(--dark);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(166, 127, 120, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Purchase Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .map-container {
+            height: 250px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-spa"></i>
+                    <h1>BlossomCrafts</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="user-actions">
+                    <button class="btn btn-outline">Admin Login</button>
+                    <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Cart (0)</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Handcrafted Floral & Yarn Treasures</h2>
+            <p>Discover unique handmade creations that bring nature's beauty into your home with a personal touch.</p>
+            <button class="btn btn-primary">Shop Collection</button>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Creations</h2>
+                <p>Explore our collection of meticulously crafted floral arrangements and yarn masterpieces.</p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-rose" style="color: #e91e63;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Silk Rose Bouquet</h3>
+                        <p class="product-description">Elegant bouquet of handcrafted silk roses in various colors.</p>
+                        <div class="product-price">$34.99</div>
+                        <button class="btn-buy" onclick="openPurchaseModal()">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-feather-alt" style="color: #8e44ad;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Macramé Wall Hanging</h3>
+                        <p class="product-description">Bohemian-style macramé wall decor made with premium cotton yarn.</p>
+                        <div class="product-price">$49.99</div>
+                        <button class="btn-buy" onclick="openPurchaseModal()">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-leaf" style="color: #27ae60;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Succulent Arrangement</h3>
+                        <p class="product-description">Handmade fabric succulents in a decorative ceramic pot.</p>
+                        <div class="product-price">$42.50</div>
+                        <button class="btn-buy" onclick="openPurchaseModal()">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-egg" style="color: #e67e22;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Yarn Woven Basket</h3>
+                        <p class="product-description">Handwoven storage basket with natural jute and cotton yarn.</p>
+                        <div class="product-price">$38.75</div>
+                        <button class="btn-buy" onclick="openPurchaseModal()">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="section" style="background-color: var(--secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seller Dashboard</h2>
+                <p>Manage your handmade creations and track your sales.</p>
+            </div>
+            
+            <div class="admin-panel">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'add-product')">Add Product</button>
+                    <button class="tab-btn" onclick="openTab(event, 'manage-products')">Manage Products</button>
+                    <button class="tab-btn" onclick="openTab(event, 'orders')">View Orders</button>
+                </div>
+                
+                <!-- Add Product Tab -->
+                <div id="add-product" class="tab-content active">
+                    <form>
+                        <div class="form-group">
+                            <label for="product-name">Product Name</label>
+                            <input type="text" class="form-control" id="product-name" placeholder="Enter product name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <textarea class="form-control" id="product-description" placeholder="Describe your product"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-price">Price ($)</label>
+                            <input type="number" class="form-control" id="product-price" placeholder="0.00" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-category">Category</label>
+                            <select class="form-control" id="product-category">
+                                <option value="">Select category</option>
+                                <option value="flowers">Handmade Flowers</option>
+                                <option value="yarn">Yarn Crafts</option>
+                                <option value="arrangements">Floral Arrangements</option>
+                                <option value="decor">Home Decor</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-image">Product Image</label>
+                            <input type="file" class="form-control" id="product-image">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: auto;">Add Product</button>
+                    </form>
+                </div>
+                
+                <!-- Manage Products Tab -->
+                <div id="manage-products" class="tab-content">
+                    <div class="products-grid">
+                        <!-- Sample Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <i class="fas fa-feather-alt" style="color: #8e44ad;"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Macramé Wall Hanging</h3>
+                                <div class="product-price">$49.99</div>
+                                <div class="form-group">
+                                    <label>Update Price</label>
+                                    <input type="number" class="form-control" value="49.99" step="0.01">
+                                </div>
+                                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                    <button class="btn btn-primary" style="flex: 1;">Update</button>
+                                    <button class="btn btn-outline" style="flex: 1; color: var(--dark); border-color: var(--dark);">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sample Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <i class="fas fa-rose" style="color: #e91e63;"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Silk Rose Bouquet</h3>
+                                <div class="product-price">$34.99</div>
+                                <div class="form-group">
+                                    <label>Update Price</label>
+                                    <input type="number" class="form-control" value="34.99" step="0.01">
+                                </div>
+                                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                    <button class="btn btn-primary" style="flex: 1;">Update</button>
+                                    <button class="btn btn-outline" style="flex: 1; color: var(--dark); border-color: var(--dark);">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Orders Tab -->
+                <div id="orders" class="tab-content">
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: var(--light);">
+                                    <th style="padding: 12px; text-align: left;">Order ID</th>
+                                    <th style="padding: 12px; text-align: left;">Product</th>
+                                    <th style="padding: 12px; text-align: left;">Customer</th>
+                                    <th style="padding: 12px; text-align: left;">Price</th>
+                                    <th style="padding: 12px; text-align: left;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 12px;">#BC-0012</td>
+                                    <td style="padding: 12px;">Silk Rose Bouquet</td>
+                                    <td style="padding: 12px;">Sarah Johnson</td>
+                                    <td style="padding: 12px;">$34.99</td>
+                                    <td style="padding: 12px;"><span style="background-color: var(--success); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Completed</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 12px;">#BC-0011</td>
+                                    <td style="padding: 12px;">Yarn Woven Basket</td>
+                                    <td style="padding: 12px;">Michael Brown</td>
+                                    <td style="padding: 12px;">$38.75</td>
+                                    <td style="padding: 12px;"><span style="background-color: #f39c12; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Shipped</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 12px;">#BC-0010</td>
+                                    <td style="padding: 12px;">Macramé Wall Hanging</td>
+                                    <td style="padding: 12px;">Emma Davis</td>
+                                    <td style="padding: 12px;">$49.99</td>
+                                    <td style="padding: 12px;"><span style="background-color: var(--accent); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">Processing</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purchase Modal -->
+    <div id="purchase-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Complete Your Purchase</h3>
+                <button class="close-modal" onclick="closePurchaseModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" class="form-control" id="full-name" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address</label>
+                        <textarea class="form-control" id="address" placeholder="Enter your full address"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Your Location</label>
+                        <div class="map-container">
+                            <i class="fas fa-map-marker-alt" style="font-size: 2rem; margin-right: 10px;"></i>
+                            <p>Interactive Map - Click to set delivery location</p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">Complete Purchase</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>BlossomCrafts</h3>
+                    <p>Creating beautiful handmade floral and yarn crafts to bring joy and beauty to your everyday life.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-etsy"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Handmade Flowers</a></li>
+                        <li><a href="#">Yarn Crafts</a></li>
+                        <li><a href="#">Floral Arrangements</a></li>
+                        <li><a href="#">Home Decor</a></li>
+                        <li><a href="#">Seasonal Collections</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Artisan City</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> hello@blossomcrafts.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 BlossomCrafts. All rights reserved. Handcrafted with love and care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to open purchase modal
+        function openPurchaseModal() {
+            document.getElementById('purchase-modal').classList.add('active');
+        }
+        
+        // Function to close purchase modal
+        function closePurchaseModal() {
+            document.getElementById('purchase-modal').classList.remove('active');
+        }
+        
+        // Function to switch admin tabs
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the current tab and add active class to button
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('purchase-modal');
+            if (event.target === modal) {
+                closePurchaseModal();
+            }
+        }
+    </script>
+</body>
+</html>
